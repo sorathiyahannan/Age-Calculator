@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <time.h>
+
+int main()
+{
+    int birthDay, birthMonth, birthYear;
+    int currentDay, currentMonth, currentYear;
+    int ageYear, ageMonth, ageDay;
+
+    /* Get Date of Birth */
+    printf("Enter your Date of Birth (DD/MM/YYYY): ");
+    scanf("%d/%d/%d", &birthDay, &birthMonth, &birthYear);
+
+    /* Get current date from computer */
+    time_t t = time(NULL);
+    struct tm *today = localtime(&t);
+
+    currentDay = today->tm_mday;
+    currentMonth = today->tm_mon + 1;
+    currentYear = today->tm_year + 1900;
+
+    /* Calculate initial age */
+    ageYear = currentYear - birthYear;
+    ageMonth = currentMonth - birthMonth;
+    ageDay = currentDay - birthDay;
+
+    /* If days are negative */
+    if (ageDay < 0)
+    {
+        ageDay += 30;
+        ageMonth--;
+    }
+
+    /* If months are negative */
+    if (ageMonth < 0)
+    {
+        ageMonth += 12;
+        ageYear--;
+    }
+
+    /* Display result */
+    printf("\n----------------------------------");
+    printf("\n       AGE CALCULATOR");
+    printf("\n----------------------------------");
+
+    printf("\nDate of Birth : %02d/%02d/%04d",
+           birthDay, birthMonth, birthYear);
+
+    printf("\nCurrent Date  : %02d/%02d/%04d",
+           currentDay, currentMonth, currentYear);
+
+    printf("\n\nYour Exact Age is:");
+    printf("\n%d Years, %d Months, %d Days",
+           ageYear, ageMonth, ageDay);
+
+    printf("\n----------------------------------");
+    printf("\nFOLLOW ME ON INSTAGRAM - @hannan_sorathiya_08");
+
+    return 0;
+}
